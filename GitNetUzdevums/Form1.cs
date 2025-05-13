@@ -77,5 +77,40 @@ namespace WindowsFormsApplication_15
                 x += step;
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSpiral_Click(object sender, EventArgs e)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+
+            Pen pen = new Pen(Color.Blue, 2);
+
+            int startX = 50;
+            int startY = 50;
+            int size = 300;
+            int steps = 10;
+            int gap = 15;
+
+            for (int i = 0; i < steps; i++)
+            {
+                // 4 sides: top, right, bottom, left
+                g.DrawLine(pen, startX, startY, startX + size, startY);                   // top
+                g.DrawLine(pen, startX + size, startY, startX + size, startY + size);    // right
+                g.DrawLine(pen, startX + size, startY + size, startX, startY + size);    // bottom
+                g.DrawLine(pen, startX, startY + size, startX, startY);                  // left
+
+                // shrink inward
+                startX += gap;
+                startY += gap;
+                size -= 2 * gap;
+            }
+        }
+
+
     }
 }
